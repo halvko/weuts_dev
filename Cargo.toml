@@ -34,11 +34,9 @@ assets = [
 
     # assets; make sure the program correctly serches for assets in /var/lib/weuts_dev before using this
     # ["frontend/*", "var/lib/weuts_dev", "644"] #
-
-    # systemd config  
-    [
-        "assets/weuts_dev.service",
-        "/etc/systemd/system/",
-        "644",
-    ],
 ]
+
+maintainer-scripts = "debian"
+
+# Defining this table enables handling of systemd-units
+systemd-units = {}
