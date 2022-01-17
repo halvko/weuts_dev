@@ -1,0 +1,13 @@
+[Unit]
+Description=Custom server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/weuts_dev
+Environment="DOMAIN_NAME=weuts.dev"
+Environment="PORT=443"
+Type=exec
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,44 @@
+[package]
+edition = "2021"
+
+name = "weuts_dev"
+version = "0.1.0"
+authors = ["Erik Funder Carstensen <funder@fastmail.com>"]
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+async-std = "1.10.0"
+tide = "0.16.0"
+tide-acme = "0.1.1"
+tide-rustls = "0.3.0"
+
+[profile.release]
+lto = true
+
+[package.metadata.deb]
+copyright = "2022, Erik Funder Carstensen"
+license-file = ["LICENSE", "0"]
+extended-description = """
+custom server
+"""
+depends = "$auto, systemd"
+assets = [
+    # binary; cargo-dep automatically changes "target/release" to whatever target is choosen
+    [
+        "target/release/weuts_dev",
+        "usr/bin/",
+        "755",
+    ],
+
+    # assets; make sure the program correctly serches for assets in /var/lib/weuts_dev before using this
+    # ["frontend/*", "var/lib/weuts_dev", "644"] #
+
+    # systemd config  
+    [
+        "assets/weuts_dev.service",
+        "/etc/systemd/system/",
+        "644",
+    ],
+]
