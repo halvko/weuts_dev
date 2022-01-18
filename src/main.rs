@@ -6,14 +6,20 @@ use tide_acme::{AcmeConfig, TideRustlsExt};
 use trace_middleware::TraceMiddleware;
 
 async fn find_content(key: &str) -> tide::Result {
+    if key == "index.html" {
+        return Ok(Response::builder(StatusCode::Ok)
+            .body_string("Hello world!".into())
+            .build());
+    }
+    Ok(Response::builder(StatusCode::NotFound).build())
     // 0. Check if exists in index
-    todo!();
+    // todo!();
     // 1. Check in-memory cache ¿taken as argument?
-    todo!();
+    // todo!();
     // 2. Check on-disk ¿where?
-    todo!();
+    // todo!();
     // 3. Check in block store ¿where?
-    todo!();
+    // todo!();
 }
 
 async fn start() {
@@ -22,6 +28,7 @@ async fn start() {
     let mut app = tide::new();
 
     app.with(TraceMiddleware);
+    app.at("/").get(|_| find_content("index.html"));
     app.at("/favicon.ico").get(|_| async {
         Ok(Response::builder(StatusCode::Ok)
             .body_bytes(include_bytes!("../static_assets/favicon/favicon.ico"))
