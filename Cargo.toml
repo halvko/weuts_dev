@@ -10,9 +10,13 @@ license = "MIT"
 
 [dependencies]
 async-std = "1.10.0"
-tide = "0.16.0"
-tide-acme = "0.1.1"
-tide-rustls = "0.3.0"
+rand = "0.8.4"
+tide = "0.17.0-beta.1"
+tide-acme = { path = "../open-source/tide-acme" }
+tide-rustls = { path = "../open-source/tide-rustls" }
+tracing = "0.1.29"
+tracing-subscriber = "0.3.6"
+uuid = { version = "0.8.2" }
 
 [profile.release]
 lto = true

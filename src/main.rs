@@ -1,10 +1,14 @@
-use tide::prelude;
+mod trace_middleware;
+
 use tide_acme::{AcmeConfig, TideRustlsExt};
+use trace_middleware::TraceMiddleware;
 
 async fn start() {
     let port = std::env::var("PORT").unwrap();
 
     let mut app = tide::new();
+
+    app.with(TraceMiddleware);
     app.at("/").get(|_| async { Ok("Hello world!") });
 
     app.listen(
@@ -23,5 +27,9 @@ async fn start() {
 }
 
 fn main() {
+    tracing_subscriber::fmt()
+        .with_max_level(tracing::Level::INFO)
+        .init();
+
     async_std::task::block_on(async { start().await })
 }
