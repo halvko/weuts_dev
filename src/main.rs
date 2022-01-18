@@ -1,7 +1,20 @@
+mod cacher;
 mod trace_middleware;
 
+use tide::{Request, Response, StatusCode};
 use tide_acme::{AcmeConfig, TideRustlsExt};
 use trace_middleware::TraceMiddleware;
+
+async fn find_content(key: &str) -> tide::Result {
+    // 0. Check if exists in index
+    todo!();
+    // 1. Check in-memory cache ¿taken as argument?
+    todo!();
+    // 2. Check on-disk ¿where?
+    todo!();
+    // 3. Check in block store ¿where?
+    todo!();
+}
 
 async fn start() {
     let port = std::env::var("PORT").unwrap();
@@ -9,7 +22,16 @@ async fn start() {
     let mut app = tide::new();
 
     app.with(TraceMiddleware);
-    app.at("/").get(|_| async { Ok("Hello world!") });
+    app.at("/favicon.ico").get(|_| async {
+        Ok(Response::builder(StatusCode::Ok)
+            .body_bytes(include_bytes!("../static_assets/favicon/favicon.ico"))
+            .content_type("image/vnd.microsoft.icon")
+            .build())
+    });
+    app.at("/:file").get(|req: Request<()>| async move {
+        let key = req.param("file")?;
+        find_content(key).await
+    });
 
     app.listen(
         tide_rustls::TlsListener::build()

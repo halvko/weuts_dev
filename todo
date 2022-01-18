@@ -1,0 +1,13 @@
+Soon:
+[ ] Caching and serving things from disk
+[ ] Non-hardcoded favicon
+
+Later:
+[ ] Updating things on disk from [some] S3 [compatible service]
+
+To Decide:
+[ ] Is index.html special? (baked into the binary?)
+[ ] What about 404?
+
+Done:
+[x] Simple standard favicon (at path favicon.ico)
