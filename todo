@@ -1,9 +1,10 @@
 Soon:
 [ ] Caching and serving things from disk
-[ ] Non-hardcoded favicon
+[ ] Non-hardcoded favicon(s)
 
 Later:
 [ ] Updating things on disk from [some] S3 [compatible service]
+[ ] Generating multiple sizes of images on demand
 [ ] Login/authentication
 [ ] Contact email hidden behind signin
 [ ] Comment system
