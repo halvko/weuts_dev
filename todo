@@ -4,6 +4,15 @@ Soon:
 
 Later:
 [ ] Updating things on disk from [some] S3 [compatible service]
+[ ] Login/authentication
+[ ] Contact email hidden behind signin
+[ ] Comment system
+	Need to have:
+	[ ] (probably) More advanced caching
+	[ ] Moderation utilities
+	Nice to have:
+	[ ] Report option
+	[ ] Comment voting
 
 To Decide:
 [ ] Is index.html special? (baked into the binary?)
