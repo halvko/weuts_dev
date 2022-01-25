@@ -4,7 +4,12 @@ Soon:
 
 Later:
 [ ] Updating things on disk from [some] S3 [compatible service]
+[ ] Dymanically decide what should be in cache
 [ ] Generating multiple sizes of images on demand
+[ ] Minimizing content on demand
+	[ ] HTML/template
+	[ ] JavaScript
+	[ ] CSS
 [ ] Login/authentication
 [ ] Contact email hidden behind signin
 [ ] Comment system
